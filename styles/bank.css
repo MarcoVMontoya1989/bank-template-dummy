@@ -23,6 +23,7 @@
 html {
     font-size: 62.5%;
     box-sizing: border-box;
+    /*scroll-behavior: smooth;*/
 }
 
 body {
@@ -607,7 +608,7 @@ h4 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
     z-index: 100;
     transition: all 0.5s;
 }
@@ -663,7 +664,9 @@ h4 {
 
 /* COOKIE MESSAGE */
 .cookie-message {
+    position: fixed;
     display: flex;
+    bottom: 0;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
