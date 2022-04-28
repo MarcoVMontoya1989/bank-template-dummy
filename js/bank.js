@@ -230,13 +230,16 @@ const imgLazyLoading = function(entries, observer) {
 
   entry.target.src = entry.target.dataset.src;
 
-  entry.target.addEventListener('load', (elem) => elem.target.classList.remove('lazy-img'));
-}
+  entry.target.addEventListener('load', (elem) => {
+    elem.target.classList.remove('lazy-img');
+    observer.unobserve(elem.target);
+  });
+};
 
 const imgLazyObservable = new IntersectionObserver(imgLazyLoading, {
   root: null,
   threshold: 0,
-  rootMargin: '10px'
+  rootMargin: '200px'
 });
 
 imageTarget.forEach(image => {
