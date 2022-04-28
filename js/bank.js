@@ -195,7 +195,7 @@ const sectionsObserver = new IntersectionObserver(sectionAnimation, {
 
 sections.forEach((section) => {
   sectionsObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
 
 
@@ -245,3 +245,42 @@ const imgLazyObservable = new IntersectionObserver(imgLazyLoading, {
 imageTarget.forEach(image => {
   imgLazyObservable.observe(image);
 });
+
+///////////////////////////////////////// Carousel WITHOUT JQUERY THANK GOD !!!!
+
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+
+const btnLeftSlider = document.querySelector('.slider__btn--left');
+const btnRightSlider = document.querySelector('.slider__btn--right');
+const btnSliderEvent = document.querySelectorAll('.slider__btn');
+
+let curSlide = 0;
+const maxSlides = slides.length;
+
+const goToSlide = function(slide) {
+  slides.forEach((s,i) => {
+    s.style.transform = `translateX(${100 * (i - slide)}%)`;
+  });
+};
+
+goToSlide(0);
+
+const nextSlide = function() {
+  if ((maxSlides - 1) === curSlide) curSlide = 0;
+  else curSlide++;
+
+  slides.forEach((s,i) => {
+    s.style.transform = `translateX(${100 * (i - curSlide)}%)`;
+  });
+};
+
+const prevSlide = function() {
+  if (curSlide === 0) curSlide = maxSlides - 1;
+  else curSlide--;
+
+  goToSlide(curSlide);
+}
+
+btnRightSlider.addEventListener('click', nextSlide);
+btnLeftSlider.addEventListener('click', nextSlide);
